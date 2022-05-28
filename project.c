@@ -165,24 +165,30 @@
     }
     
     char * getFirstName(struct Student s){
-        return s.studentName.firstName ;
+        char *str =s.studentName.firstName;
+        return str ;
     }
     char * getMiddleName(struct Student s){
-        return s.studentName.MiddleName ;
+        char *str =s.studentName.middleName;
+        return str ;
     }
     char * getLastName(struct Student s){
-        return s.studentName.lastName ;
+        char *str =s.studentName.lastName;
+        return str;
     }
     
     char * getNationality(struct Student s){
-        return s.nationality ;
+       char *str =s.nationality ;
+       return str;
     }
 
     char * getTypeOfId(struct Student s){
-        return s.studentID.typeOfId;
+        char *str = s.studentID.typeOfId;
+         return str;
     }
     char * getIdNumber(struct Student s){
-        return s.studentID.idNumber;
+       char *str = s.studentID.idNumber;
+        return str;
     }
     int getExpiryDay(struct Student s){
         return s.studentID.expiryDate.day;
@@ -194,7 +200,8 @@
         return s.studentID.expiryDate.month;
     }
     char * getHomeAddres(struct Student s){
-        return s.homeAddress;
+        char *str = s.homeAddress;
+        return str;
     }
     int getBirthDay(struct Student s){
         return s.studentAge.dateOfBirth.day;
@@ -209,16 +216,20 @@
         return s.studentAge.age;
     }
     char * getGender(struct Student s){
-        return s.gender;
+        char *str = s.gender;
+         return str;
     }
     char * getDepartment(struct Student s){
-        return s.department;
+        char *str = s.department;
+         return str;
     }
     char * getTutorName(struct Student s){
-        return s.tutor.name;
+        char *str = s.tutor.name;
+         return str;
     }
     char * getTutorCode(struct Student s){
-        return s.tutor.code;
+        char *str = s.tutor.code;
+         return str;
     }
     int getTotalCreditHours(struct Student s){
         return s.creditHours.totalHours;
@@ -233,13 +244,16 @@
         return s.GPA;
     }
     char * getEmail(struct Student s){
-        return s.contact.email;
+       char *str = s.contact.email;
+        return str;
     }
     char * getHomePhone(struct Student s){
-        return s.contact.homePhone;
+        char *str = s.contact.homePhone;
+         return str;
     }
     char * getMobile(struct Student s){
-        return s.contact.studentMobile;
+        char *str = s.contact.studentMobile;
+         return str;
     }
     
 
@@ -266,13 +280,32 @@
         gets(idNumber);
         printf("enter expiry date day :\n");
         int day;
-        scanf("%d",day);
+
+        do{
+            scanf("%d",&day);
+            if(!(day <= 31 && day > 0)){
+                printf("please enter a valid day\n");
+            }
+        } while(!(day <= 31 && day > 0));
+        
         printf("enter expiry date month :\n");
         int month;
-        scanf("%d",month);
+        do{
+            scanf("%d",&month);
+            if(!(month <= 12 && month > 0)){
+                printf("please enter a valid month\n");
+            }
+        } while(!(month <= 12 && month > 0));
         printf("enter expiry date year :\n");
         int year;
-        scanf("%d",year);
+        time_t t = time(NULL);
+        struct tm tm = *localtime(&t); 
+        do{
+            scanf("%d",&year);
+            if(!(day <= tm.tm_year && day >= 1980)){
+                printf("please enter a valid year\n");
+            }
+        } while(!(day <= tm.tm_year && day >= 1980));
         setStudentId(s,type,idNumber,day,month,year);
         printf("enter student Home Address :\n");
         char address[200];
@@ -280,14 +313,35 @@
         setHomeAddress(s,address);
         printf("enter Birth date day :\n");
         int Birthday;
-        scanf("%d",Birthday);
+    
+         do{
+            scanf("%d",&Birthday);
+            if(!(Birthday <= 31 && Birthday > 0)){
+                printf("please enter a valid day\n");
+            }
+        } while(!(Birthday <= 31 && Birthday > 0));
+
         printf("enter Birth date month :\n");
-        int Birthmonth;
-        scanf("%d",Birthmonth);
+        int BirthMonth;
+
+        do{
+            scanf("%d",&BirthMonth);
+            if(!(BirthMonth <= 12 && BirthMonth > 0)){
+                printf("please enter a valid month\n");
+            }
+        } while(!(BirthMonth <= 12 && BirthMonth > 0));
+
         printf("enter Birth date year :\n");
         int Birthyear;
-        scanf("%d",Birthyear);
-        setStudentAge(s,Birthday,Birthmonth,Birthyear);
+    
+        do{
+            scanf("%d",&Birthyear);
+            if(!(day <= tm.tm_year && Birthyear >= 1980)){
+                printf("please enter a valid year\n");
+            }
+        } while(!(day <= tm.tm_year && Birthyear >= 1980));
+
+        setStudentAge(s,Birthday,BirthMonth,Birthyear);
         printf("enter student gender :\n");
         char gender[30];
         gets(gender);
@@ -305,15 +359,15 @@
         setTutor(s,tutorname,tutorCode);
         printf("enter total credit Hours :\n");
         int total;
-        scanf("%d",total);
+        scanf("%d",&total);
         printf("enter finished credit Hours :\n");
         int finished;
-        scanf("%d",finished);
+        scanf("%d",&finished);
         setCreditHours(s,total,finished);
         if(finished>0){
             printf("enter finished hours GPA \n");
             int gpa;
-            scanf("%d",gpa);
+            scanf("%d",&gpa);
             setGPA(s,gpa);
         }else{
             setGPA(s,0);
@@ -329,7 +383,39 @@
         gets(phone);
         setContact(s,mail,homePhone,phone);
     }
+    void printStudent(struct Student s){
+        printf("-------------Student Name-------------\n");
+        printf(" %s %s %s\n",getFirstName(s),getMiddleName(s),getLastName(s));
+        printf("-------------Nationality-------------\n");
+        printf(" %s \n",getNationality(s));
+        printf("-----------------ID------------------\n");
+        printf("type of Id : %s\n",getTypeOfId(s));
+        printf("ID number : %s\n",getIdNumber(s));
+        printf("expiry date : %d / %d / %d \n",getExpiryDay(s),getExpiryMonth(s),getExpiryYear(s));
+        printf("------------Home Address-------------\n");
+        printf(" %s",getHomeAddres(s));
+        printf("--------------BirthDate--------------\n");
+        printf(" %d / %d / %d",getBirthDay(s),getBirthMonth(s),getBirthYear(s));
+        printf("---------------Gender----------------\n");
+        printf(" %s",getGender(s));
+        printf("--------------Department--------------\n");
+        printf(" %s",getGender(s));
+        printf("----------------Tutor-----------------\n");
+        printf("name : %s",getTutorName(s));
+        printf("code : %s",getTutorCode(s));
+        printf("-------------Credit hours-------------\n");
+        printf("Total : %d",getTotalCreditHours(s));
+        printf("Finished : %d",getFinishedCreditHours(s));
+        printf("Current Term : %d",getCurrentTerm(s));
+        printf("---------------Contacts--------------\n");
+        printf("E-mail : %s",getEmail(s));
+        printf("Home Phone : %s",getHomePhone(s));
+        printf("Student Mobile : %s",getMobile(s));
+        printf("---------------------------------------");
+        
+    } 
+
     
     int main() {
-        
+        printf("hello world");
     }
