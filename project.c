@@ -415,7 +415,57 @@
         
     } 
 
-    
+    int getStudentsNumberInDept(struct Student s[],int n ,char dept[]){
+        int k = 0;
+        for(int i = 0 ; i<n;i++){
+            if(strcmp(s[i].department,dept)==0){
+                k++;
+            }
+        }
+        return k;
+    }
+     void sortDesc(struct Student list[], int s){
+        int i, j;
+        struct Student temp;
+        
+        for (i = 0; i < s - 1; i++)
+        {
+            for (j = 0; j < (s - 1-i); j++)
+            {
+                if (list[j].GPA < list[j + 1].GPA)
+                {
+                    temp = list[j];
+                    list[j] = list[j + 1];
+                    list[j + 1] = temp;
+                } 
+            }
+        }
+    }
+    // void swap(struct Student *A, struct Student *B){
+    // struct Student temp = *A;
+    // *A = *B;
+    // *B = temp;
+    // }
+    void sortDepartmetStudentByGPA(struct Student s[],int n,char dept[]){
+        int num = getStudentsNumberInDept(s,n,dept);
+        struct Student arr[num];
+        int k = 0 ;
+        for(int i = 0 ; i<n;i++){
+            if(strcmp(s[i].department,dept)==0){
+                struct Student std ;
+                setStudentName(std,getFirstName(s[i]),getMiddleName(s[i]),getLastName(s[i]));
+                setNationality(std,getNationality(s[i]));
+                arr[k] = std;
+                k++;
+            }
+        }
+        sortDesc(arr,num+1);
+        for(int i = 0 ;i<=num;i++){
+            printStudent(arr[i]);
+        }
+    }
+   
+
     int main() {
         printf("hello world");
     }
