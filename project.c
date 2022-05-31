@@ -123,8 +123,8 @@
     void setDepartment(struct Student s[],char d[]){
         strcpy(s[0].department,d);
     }
-    void setTutorName(struct Student s[],char n[]){
-        strcpy(s[0].tutor.name,n);
+    void setTutorName(struct Student s[], char name[]){
+        strcpy(s[0].tutor.name,name);
     }
     void setTutorCode(struct Student s[],char c[]){
         strcpy(s[0].tutor.code,c);
@@ -167,146 +167,145 @@
         s[0].creditHours.finishedHours=s[0].creditHours.finishedHours+courseHours;
     }
     void setFees(struct Student s[], double fees){
-        if(s[0].discount>0){
-            s[0].fees=((fees*(s[0].discount))/100);
-        }else{
             s[0].fees = fees;
-        }
     }
     void setDiscount(struct Student s[],double discount){
         s[0].discount=discount;
         if(s[0].fees>0){
-             s[0].fees=((s[0].fees*s[0].discount)/100.0);
+            double mult = (s[0].fees)*(s[0].discount);
+            mult = mult /100;
+             s[0].fees=(s[0].fees)-mult;
         }
     }
-    char * getFirstName(struct Student s){
-        char *str =s.studentName.firstName;
+    char * getFirstName(struct Student s[]){
+        char *str =s[0].studentName.firstName;
         return str ;
     }
-    char * getMiddleName(struct Student s){
-        char *str =s.studentName.middleName;
+    char * getMiddleName(struct Student s[]){
+        char *str =s[0].studentName.middleName;
         return str ;
     }
-    char * getLastName(struct Student s){
-        char *str =s.studentName.lastName;
+    char * getLastName(struct Student s[]){
+        char *str =s[0].studentName.lastName;
         return str;
     }
     
-    char * getNationality(struct Student s){
-       char *str =s.nationality ;
+    char * getNationality(struct Student s[]){
+       char *str =s[0].nationality ;
        return str;
     }
 
-    char * getTypeOfId(struct Student s){
-        char *str = s.studentID.typeOfId;
+    char * getTypeOfId(struct Student s[]){
+        char *str = s[0].studentID.typeOfId;
          return str;
     }
-    char * getIdNumber(struct Student s){
-       char *str = s.studentID.idNumber;
+    char * getIdNumber(struct Student s[]){
+       char *str = s[0].studentID.idNumber;
         return str;
     }
-    int getExpiryDay(struct Student s){
-        return (s.studentID.expiryDate.day);
+    int getExpiryDay(struct Student s[]){
+        return (s[0].studentID.expiryDate.day);
     }
-    int getExpiryMonth(struct Student s){
-        return (s.studentID.expiryDate.month);
+    int getExpiryMonth(struct Student s[]){
+        return (s[0].studentID.expiryDate.month);
     }
-    int getExpiryYear(struct Student s){
-        return (s.studentID.expiryDate.year);
+    int getExpiryYear(struct Student s[]){
+        return (s[0].studentID.expiryDate.year);
     }
-    char * getHomeAddres(struct Student s){
-        char *str = s.homeAddress;
+    char * getHomeAddres(struct Student s[]){
+        char *str = s[0].homeAddress;
         return str;
     }
-    int getBirthDay(struct Student s){
-        return s.studentAge.dateOfBirth.day;
+    int getBirthDay(struct Student s[]){
+        return s[0].studentAge.dateOfBirth.day;
     }
-    int getBirthMonth(struct Student s){
-        return s.studentAge.dateOfBirth.month;
+    int getBirthMonth(struct Student s[]){
+        return s[0].studentAge.dateOfBirth.month;
     }
-    int getBirthYear(struct Student s){
-        return s.studentAge.dateOfBirth.year;
+    int getBirthYear(struct Student s[]){
+        return s[0].studentAge.dateOfBirth.year;
     }
-    int getAge(struct Student s){
-        return s.studentAge.age;
+    int getAge(struct Student s[]){
+        return s[0].studentAge.age;
     }
-    char * getGender(struct Student s){
-        char *str = s.gender;
+    char * getGender(struct Student s[]){
+        char *str = s[0].gender;
          return str;
     }
-    char * getDepartment(struct Student s){
-        char *str = s.department;
+    char * getDepartment(struct Student s[]){
+        char *str = s[0].department;
          return str;
     }
-    char * getTutorName(struct Student s){
-        char *str = (s.tutor.name);
-         return str;
-    }
-    char * getTutorCode(struct Student s){
-        char *str = s.tutor.code;
-         return str;
-    }
-    int getTotalCreditHours(struct Student s){
-        return s.creditHours.totalHours;
-    }
-    int getFinishedCreditHours(struct Student s){
-        return s.creditHours.finishedHours;
-    }
-    int getCurrentTerm(struct Student s){
-        return (s.creditHours.currentTerm);
-    }
-    double getGPA(struct Student s){
-        return s.GPA;
-    }
-    char * getEmail(struct Student s){
-       char *str = (s.contact.email);
+    char * getTutorName(struct Student s[]){
+        char *str = s[0].tutor.name;
         return str;
     }
-    char * getHomePhone(struct Student s){
-        char *str = s.contact.homePhone;
+    char * getTutorCode(struct Student s[]){
+        char *str = s[0].tutor.code;
          return str;
     }
-    char * getMobile(struct Student s){
-        char *str = s.contact.studentMobile;
+    int getTotalCreditHours(struct Student s[]){
+        return s[0].creditHours.totalHours;
+    }
+    int getFinishedCreditHours(struct Student s[]){
+        return s[0].creditHours.finishedHours;
+    }
+    int getCurrentTerm(struct Student s[]){
+        return (s[0].creditHours.currentTerm);
+    }
+    double getGPA(struct Student s[]){
+        return s[0].GPA;
+    }
+    char * getEmail(struct Student s[]){
+       char *str = (s[0].contact.email);
+        return str;
+    }
+    char * getHomePhone(struct Student s[]){
+        char *str = s[0].contact.homePhone;
          return str;
     }
-    double getFees(struct Student s){
-        return s.fees;
+    char * getMobile(struct Student s[]){
+        char *str = s[0].contact.studentMobile;
+         return str;
     }
-    double getDiscount(struct Student s){
-        return s.discount;
+    double getFees(struct Student s[]){
+        return s[0].fees;
+    }
+    double getDiscount(struct Student s[]){
+        return s[0].discount;
     }
     //todo : add fees & discount in set student data 
 
     void setStudentData(struct Student s[]){
         printf("enter Student First name: \n");
         char fName[30];
-        fgets(fName, 30, stdin);
+        scanf("%s",fName);
         printf("enter Student middle name: \n");
         char mName[30];
-        fgets(mName, 30, stdin);
+        scanf("%s",mName);
         printf("enter Student last name: \n");
         char lName[30];
-        fgets(lName, 30, stdin);
+        scanf("%s",lName);
         setStudentFirstName(s,fName);
         setStudentMiddleName(s,mName);
         setStudenLastName(s,lName);
         printf("enter Student Nationality: \n");
         char nationality[30];
-        fgets(nationality, 30, stdin);
+        scanf("%s",nationality);
         setNationality(s,nationality);
         printf("\nenter Student ID data \n what is your Id type :\n");
         char type[30];
-        fgets(type, 30, stdin);
+        scanf("%s",type);
         printf("\nenter your id number :\n");
         char idNumber[30];
-        fgets(idNumber, 30, stdin);
+        scanf("%s",idNumber);
         printf("\nenter expiry date day :\n");
 
         int day=0;
         do{
             scanf("%d",&day);
             if(!(day <= 31 && day > 0)){
+
                 printf("please enter a valid day\n");
             }
         } while(!(day <= 31 && day > 0));
@@ -325,16 +324,16 @@
         struct tm tm = *localtime(&t); 
         do{
             scanf("%d",&year);
-            if(!(year <= (tm.tm_year+1900) && year >= 1980)){
+            if(!( year >= 1980)){
                 printf("please enter a valid year\n");
             }
-        } while(!(year <= (tm.tm_year+1900) && year >= 1980));
+        } while(!( year >= 1980));
         setStudentIdTypeOfId(s,type);
         setStudentIdIdNumber(s,idNumber);
         setStudentIdExpiryDate(s,day,month,year);
         char address[200];
         printf("enter student Home Address :\n(with out spaces)\n");
-        scanf("%s",&address);
+        scanf("%s",address);
         setHomeAddress(s,address);
         printf("enter Birth date day :\n");
         int Birthday;
@@ -373,15 +372,15 @@
         setGender(s,gender);
         printf("enter student department :\n");
         char department[30];
-        fgets(department, 30, stdin);
+        scanf("%s",department);
         setDepartment(s,department);
         printf("enter student Tutor Name :\n");
         char tutorname[50];
-        fgets(tutorname, 50, stdin);
+        scanf("%s",tutorname);
+        setTutorName(s,tutorname);
         printf("enter student Tutor Code :\n");
         char tutorCode[10];
-        fgets(tutorCode, 10, stdin);
-        setTutorName(s,tutorname);
+        scanf("%s",tutorCode);
         setTutorCode(s,tutorCode);
         printf("enter total credit Hours :\n");
         int total;
@@ -392,8 +391,8 @@
         setCreditHours(s,total,finished);
         if(finished>0){
             printf("enter finished hours GPA \n");
-            int gpa;
-            scanf("%d",&gpa);
+            double gpa;
+            scanf("%lf",&gpa);
             setGPA(s,gpa);
         }else{
             setGPA(s,0);
@@ -403,10 +402,10 @@
         scanf("%s",mail);
         printf("enter your home phone :\n");
         char homePhone[15];
-        fgets(homePhone, 15, stdin);
+        scanf("%s",homePhone);
         printf("enter your phone number :\n");
         char phone[20];
-        fgets(phone, 20, stdin);
+        scanf("%s",phone);
 
         setContactEmail(s,mail);
         setContactHomePhone(s,homePhone);
@@ -417,17 +416,47 @@
         scanf("%lf",&fees);
         setFees(s,fees);
         printf("there is any discount ? \n enter :\n y for yes \n n for no\n");
-        char yes ;
-        scanf("%c",&yes);
-        if(yes == 'y'){
+        char yes[1] ;
+        scanf("%s",yes);
+        if(yes[0] == 'y'){
             printf("enter discount in precentage : \n");
             double disc;
             scanf("%lf",&disc);
             setDiscount(s,disc);
         }
-        printf("student added \n thank you !");
+        printf("\n student added \n thank you !");
     }
-    void printStudent(struct Student s){
+
+    void setData(struct Student s[],char fName[],char mName[],char lName[],char nationality[],char type[]
+                            ,char idNumber[],int day,int month,int year,char address[],int Birthday,int BirthMonth
+                            ,int Birthyear, char gender[],char department[],char tutorname[],char tutorCode [],
+                            int total,int finished,double gpa,char mail [],char homePhone[],char phone[],
+                            double fees,double disc){
+        setStudentFirstName(s,fName);
+        setStudentMiddleName(s,mName);
+        setStudenLastName(s,lName);
+        setNationality(s,nationality);
+        setStudentIdTypeOfId(s,type);
+        setStudentIdIdNumber(s,idNumber);
+        setStudentIdExpiryDate(s,day,month,year);
+        setHomeAddress(s,address);
+        setStudentAge(s,Birthday,BirthMonth,Birthyear);
+        setGender(s,gender);
+        setDepartment(s,department);
+        setTutorName(s,tutorname);
+        setTutorCode(s,tutorCode);
+        setCreditHours(s,total,finished);
+        setGPA(s,gpa);
+        setContactEmail(s,mail);
+        setContactHomePhone(s,homePhone);
+        setContactStudentMobile(s,phone);
+        setFees(s,fees);
+        setDiscount(s,disc);
+    }
+
+
+
+    void printStudent(struct Student s[]){
         printf("\n-------------Student Name-------------\n");
         printf(" %s %s %s\n",getFirstName(s),getMiddleName(s),getLastName(s));
         printf("\n-------------Nationality-------------\n");
@@ -440,35 +469,40 @@
         printf(" %s",getHomeAddres(s));
         printf("\n--------------BirthDate--------------\n");
         printf(" %d / %d / %d",getBirthDay(s),getBirthMonth(s),getBirthYear(s));
+        printf("\nAge : %d",getAge(s));
         printf("\n---------------Gender----------------\n");
         printf(" %s",getGender(s));
         printf("\n--------------Department--------------\n");
-        printf(" %s",getGender(s));
+        printf(" %s",getDepartment(s));
         printf("\n----------------Tutor-----------------\n");
-        printf("name : %s",getTutorName(s));
+        printf("name : %s \n",getTutorName(s));
         printf("code : %s",getTutorCode(s));
         printf("\n-------------Credit hours-------------\n");
         printf("Total : %d \n",getTotalCreditHours(s));
         printf("Finished : %d \n",getFinishedCreditHours(s));
-        printf("Current Term : %d \n",getCurrentTerm(s));
+        printf("Current Term : %d \n",getCurrentTerm(s));        
+        printf("GPA : %f \n",getGPA(s));
         printf("\n---------------Contacts--------------\n");
         printf("E-mail : %s \n",getEmail(s));
         printf("Home Phone : %s \n",getHomePhone(s));
         printf("Student Mobile : %s ",getMobile(s));
+        printf("\n----------fees after discount--------\n");
+        printf("fees: %f",getFees(s));
+        printf("\n---------------------------------------\n");
         printf("\n---------------------------------------\n");
         
     } 
 
-    int getStudentsNumberInDept(struct Student s[],int n ,char dept[]){
+    int getStudentsNumberInDept(struct Student s[][1],int n ,char dept[]){
         int k = 0;
         for(int i = 0 ; i<n;i++){
-            if(strcmp(s[i].department,dept)==0){
+            if(strcmp(s[i][0].department,dept)==0){
                 k++;
             }
         }
         return k;
     }
-     void sortDesc(struct Student list[], int s){
+     void sortDesc(struct Student list[][1], int s){
         int i, j;
         struct Student temp;
         
@@ -476,11 +510,11 @@
         {
             for (j = 0; j < (s - 1-i); j++)
             {
-                if (list[j].GPA < list[j + 1].GPA)
+                if (list[j][0].GPA < list[j + 1][0].GPA)
                 {
-                    temp = list[j];
-                    list[j] = list[j + 1];
-                    list[j + 1] = temp;
+                    temp = list[j][0];
+                    list[j][0] = list[j + 1][0];
+                    list[j + 1][0] = temp;
                 } 
             }
         }
@@ -490,32 +524,63 @@
     // *A = *B;
     // *B = temp;
     // }
-    void sortDepartmetStudentByGPA(struct Student s[],int n,char dept[]){
+    void sortDepartmetStudentByGPA(struct Student s[][1],int n,char dept[]){
         int num = getStudentsNumberInDept(s,n,dept);
-        struct Student arr[num];
+        struct Student arr[num][1];
         int k = 0 ;
         for(int i = 0 ; i<n;i++){
-            if(strcmp(s[i].department,dept)==0){
-                struct Student std ;
-                // setStudentName(std,getFirstName(s[i]),getMiddleName(s[i]),getLastName(s[i]));
-                // setNationality(std,getNationality(s[i]));
-                //todo:set the rest of std attributes
-                arr[k] = std;
+            if(strcmp(s[i][0].department,dept)==0){
+                struct Student std[1] ;
+                 setData(std,getFirstName(s[i]),getMiddleName(s[i]),getLastName(s[i]),getNationality(s[i]),getTypeOfId(s[i]),
+                getIdNumber(s[i]),getExpiryDay(s[i]),getExpiryMonth(s[i]),getExpiryYear(s[i]),getHomeAddres(s[i]),getBirthDay(s[i]),getBirthMonth(s[i]),
+                getBirthYear(s[i]),getGender(s[i]),getDepartment(s[i]),getTutorName(s[i]),getTutorCode(s[i]),getTotalCreditHours(s[i]),getFinishedCreditHours(s[i]),
+                getGPA(s[i]),getEmail(s[i]),getHomePhone(s[i]),getMobile(s[i]),getFees(s[i]),getDiscount(s[i]));
+                arr[k][0] = std[0];
                 k++;
             }
         }
         sortDesc(arr,num+1);
-        for(int i = 0 ;i<=num;i++){
+        for(int i = 0 ;i<num;i++){
             printStudent(arr[i]);
         }
+    }
+
+
+    void addData(struct Student s[][1]){
+                 setData(s[0],"Kiroles","Rimon","Mouris","egyptian","national","30011241600676",2,1,2024,"Tanta",24,11,2000,"male","mechanical"
+                 ,"Dr:Noha","90",180,90,3.01,"kiro.rimon@gmail.com","0403314484","01280112482",800000,10);
+
+                 setData(s[1],"Sarah","Ibrahem","Massod","egyptian","national","30011247252862",9,11,2025,"cairo",2,1,2000,"female","mechanical"
+                 ,"Dr:Nagwa","120",180,18,3.52,"sarah@gmail.com","0803314484","01025112482",1000000,0);
+
+                 setData(s[2],"assad","osama","ghaly","egyptian","national","30067258268254",26,10,2026,"komhamada",9,8,2000,"male","mechanical"
+                 ,"Dr:Heba","600",180,100,3.61,"kiro.rimon@gmail.com","0303314484","01100112482",600000,5);
+
+                 setData(s[3],"mohamed","farid","samy","egyptian","national","30011241656416",8,12,2027,"alexanderia",1,1,2002,"male","mechanical"
+                 ,"Dr:Lara","60",180,82,3.9,"farid@gmail.com","03403314484","012725725752",800000,50);
+
+                 setData(s[4],"sameh","abbas","kamel","egyptian","national","30011585100676",9,3,2023,"demmiatta",30,5,2004,"male","electrical"
+                 ,"Dr:Nahla","500",180,0,0,"sameh@gmail.com","0303314484","012285712482",500000,3);
     }
 
 
    
 
     int main() {
-        struct Student s[1];
-        setStudentData(s);
-        printStudent(s[0]);
+        struct Student s[6][1];
+        addData(s);
+        printf("five students added \n \n");
+
+
+        setStudentData(s[5]);
+
+
+        for(int i =0 ; i<6 ;i++)
+           printStudent(s[i]);
+        
+        printf("\nenter department to show their students orderd by GPA \n");
+        char d [20];
+        scanf("%s",d);
+        sortDepartmetStudentByGPA(s,6,d);
         return 0 ;
     }
